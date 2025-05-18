@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.nom }}{% endblock %}
+
+{% block body %}
+<style>
+    body {
+        background: linear-gradient(120deg, #fff3e0, #e0f2f1);
+        font-family: 'Segoe UI', sans-serif;
+        padding: 40px;
+    }
+
+    .card-container {
+        max-width: 700px;
+        margin: auto;
+    }
+
+    .card {
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+
+    .card-header {
+        background-color: #ffb74d;
+        color: white;
+        padding: 20px;
+    }
+
+    .card-body {
+        background-color: #ffffff;
+        padding: 30px;
+    }
+
+    h1 {
+        margin: 0;
+    }
+
+    h4 {
+        color: #00796b;
+    }
+
+    .btn {
+        margin-right: 10px;
+        margin-top: 20px;
+    }
+
+    .text-muted {
+        font-style: italic;
+        color: #888;
+    }
+</style>
+
+<div class="card-container">
+    <div class="card mt-4">
+        <div class="card-header">
+            <h1>{{ article.nom }}</h1>
+        </div>
+        <div class="card-body">
+            <h4>Prix : {{ article.prix }} €</h4>
+            <p>
+                <strong>Catégorie :</strong> 
+                {% if article.category is not null %}
+                    {{ article.category.titre }}
+                {% else %}
+                    <span class="text-muted">Aucune catégorie</span>
+                {% endif %}
+            </p>
+            <a href="{{ path('article_list') }}" class="btn btn-secondary">Retour à la liste</a>
+            <a href="{{ path('article_edit', {'id': article.id}) }}" class="btn btn-primary">Modifier</a>
+            <a href="{{ path('article_delete', {'id': article.id}) }}" class="btn btn-danger"
+               onclick="return confirm('Êtes-vous sûr de supprimer cet article ?');">Supprimer</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier Article{% endblock %}
+
+{% block body %}
+<style>
+    body {
+        background: linear-gradient(120deg, #fbe9e7, #e3f2fd);
+        font-family: 'Segoe UI', sans-serif;
+        padding: 40px;
+    }
+
+    .form-container {
+        background-color: #fff;
+        padding: 35px;
+        border-radius: 15px;
+        max-width: 600px;
+        margin: auto;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+        color: #1565c0;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .btn-success {
+        background-color: #2e7d32;
+        border: none;
+    }
+
+    .btn-success:hover {
+        background-color: #1b5e20;
+    }
+
+    .btn-secondary {
+        margin-left: 10px;
+    }
+</style>
+
+<div class="form-container">
+    <h1>Modifier l'article</h1>
+
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+        {{ form_widget(form) }}
+        <div class="mt-4 text-center">
+            <button type="submit" class="btn btn-success">Mettre à jour</button>
+            <a href="{{ path('article_list') }}" class="btn btn-secondary">Annuler</a>
+        </div>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

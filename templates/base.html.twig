@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="{{ path('article_list') }}">My Shop</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+<!-- Voici la partie navbar à mettre à jour dans votre template base.html.twig -->
+<ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+        <a href="/" class="nav-link">Home</a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ path('new_article') }}" class="nav-link">Ajouter article</a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ path('new_category') }}" class="nav-link">Ajouter catégorie</a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ path('article_par_cat') }}" class="nav-link">Recherche par catégorie</a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ path('article_par_prix') }}" class="nav-link">Recherche par prix</a>
+    </li>
+</ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container mt-4">
+            {% block body %}{% endblock %}
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

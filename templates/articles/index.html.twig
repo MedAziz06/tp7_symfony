@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Articles{% endblock %}
+
+{% block body %}
+<style>
+    body {
+        background: linear-gradient(135deg, #fce3ec, #ffe9d2);
+        font-family: 'Segoe UI', sans-serif;
+        padding: 40px;
+    }
+
+    .container-custom {
+        background-color: #ffffffee;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        color: #d84315;
+        margin-bottom: 25px;
+    }
+
+    .table thead {
+        background-color: #d84315;
+        color: white;
+    }
+
+    .table tbody tr:hover {
+        background-color: #fbe9e7;
+    }
+
+    .btn-dark {
+        background-color: #4e342e;
+        border: none;
+    }
+
+    .btn-dark:hover {
+        background-color: #3e2723;
+    }
+
+    .btn-danger:hover {
+        background-color: #c62828;
+    }
+
+    .form-row .form-group {
+        margin-bottom: 0;
+    }
+</style>
+
+<div class="container container-custom">
+    <h2>Rechercher un article par nom</h2>
+
+    {{ form_start(form) }}
+    <div class="form-row align-items-end mb-3">
+        <div class="col">
+            {{ form_row(form.nom) }}
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Rechercher</button>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+
+    {% if articles %}
+        <table id="articles" class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prix</th>
+                    <th>Catégorie</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for article in articles %}
+                    <tr>
+                        <td>{{ article.nom }}</td>
+                        <td>{{ article.prix }}</td>
+                        <td>{{ article.category.titre }}</td>
+                        <td>
+                            <a href="/article/{{ article.id }}" class="btn btn-dark btn-sm">Détails</a>
+                            <a href="/article/edit/{{ article.id }}" class="btn btn-secondary btn-sm">Modifier</a>
+                            <a href="/article/delete/{{ article.id }}" class="btn btn-danger btn-sm"
+                               onclick="return confirm('Etes-vous sûr de supprimer cet article ?');">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="mt-4">Aucun article trouvé avec ce nom.</p>
+    {% endif %}
+</div>
+{% endblock %}
